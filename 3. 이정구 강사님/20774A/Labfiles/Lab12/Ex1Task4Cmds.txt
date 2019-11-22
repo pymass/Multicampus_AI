@@ -1,0 +1,7 @@
+hdfs dfs -ls / 
+
+hdfs dfs -ls /example 
+
+hdfs dfs -ls /example/data/gutenberg 
+
+hdfs dfs -text /example/data/gutenberg/ulysses.txt 

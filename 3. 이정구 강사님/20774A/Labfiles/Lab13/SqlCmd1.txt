@@ -1,0 +1,16 @@
+USE [WideWorldImportersDW];
+GO
+
+CREATE PROC get_pick_length 
+AS  
+BEGIN  
+ EXEC   sp_execute_external_script  
+       @language = N'R'  
+     , @script = N'res <-quantile(InputDataSet$TimeToPick);
+                  df <- data.frame(res);'  
+     , @input_data_1 = N'SELECT datediff(DAY, [Order Date Key], [Picked Date Key]) as TimeToPick FROM [Fact].[Order]
+	  WHERE DATEDIFF(DAY, [Order Date Key], [Picked Date Key]) > 0;'  
+	 , @output_data_1_name = N'df'
+     WITH RESULT SETS (("TimeToPick" float not null));  
+END;  
+GO

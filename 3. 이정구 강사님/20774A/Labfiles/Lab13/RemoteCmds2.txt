@@ -1,0 +1,29 @@
+iris$Petal.Width
+
+data(iris)
+head(iris)
+summary(iris)
+
+library(scatterplot3d)
+scatterplot3d(iris[,1:3], color=as.integer(iris$Species))
+
+hist(iris$Petal.Width, breaks=20, col="green")
+plot(x=iris$Petal.Length, y=iris$Petal.Width, col=iris$Species)
+
+iris_discrete <- data.frame(
+    Sepal.Length= cut(iris$Sepal.Length, breaks=3,
+        labels=c("small", "medium", "large"), ordered=TRUE),
+    Sepal.Width= cut(iris$Sepal.Width, breaks=3,
+        labels=c("small", "medium", "large"), ordered=TRUE),
+    Petal.Length= cut(iris$Petal.Length, breaks=3,
+        labels=c("small", "medium", "large"), ordered=TRUE),
+    Petal.Width= cut(iris$Petal.Width, breaks=3,
+        labels=c("small", "medium", "large"), ordered=TRUE),
+    Species = iris$Species
+    )
+
+head(iris_discrete)
+
+table(iris_discrete$Sepal.Length)
+barplot(table(iris_discrete$Sepal.Length))
+

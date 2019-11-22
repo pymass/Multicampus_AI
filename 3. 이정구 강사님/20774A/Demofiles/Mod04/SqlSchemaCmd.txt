@@ -1,0 +1,4 @@
+CREATE SCHEMA [20774A] AUTHORIZATION db_owner;
+GO
+EXECUTE sp_addextendedproperty @name = N'Description', 
+@value = N'Schema for AzureML data import.', @level0type = N'SCHEMA', @level0name = N'20774A';

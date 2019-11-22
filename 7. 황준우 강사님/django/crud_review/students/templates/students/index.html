@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<h1>Student Index</h1>
+
+<img src="{% static 'bart.png' %}" alt="">
+<img src="{% static 'lisa.png' %}" alt="">
+
+<a href="{% url 'students:new' %}">New</a>
+
+<ul>
+    {% for student in students %}
+        <li>
+            <a href="{% url 'students:detail' student.pk %}">{{ student.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

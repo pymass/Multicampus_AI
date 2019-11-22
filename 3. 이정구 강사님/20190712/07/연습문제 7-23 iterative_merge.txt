@@ -1,0 +1,44 @@
+def merge(a, b, low, mid, high): 
+    i = low
+    j = mid + 1
+    for k in range(low, high+1): # a의 앞부분과 뒷부분을 합병하여 보조리스트 b에 저장
+            if i > mid:       
+                b[k] = a[j]      # 앞부분이 먼저 소진된 경우
+                j += 1
+            elif j > high:           
+                b[k] = a[i]      # 뒷부분이 먼저 소진된 경우
+                i += 1
+            elif a[j] < a[i]:    
+                b[k] = a[j]      # a[j]가 승자
+                j += 1
+            else:
+                b[k] = a[i]      # a[i]가 승자
+                i += 1      
+    for k in range(low, high+1): 
+        a[k] = b[k]              # 보조리스트 b를 리스트 a에 복사    
+    
+def iterative_sort(a): 
+    N = len(a)
+    b = [None for i in range(N)]
+    k = 1
+    while k < N:         # k = 1, 2, 4, 8, 16, ...
+        i = 0
+        while i < N-k:                 # i = 0, 2, 4, 8 ... (k=1)
+            left = i                   # i = 0, 4, 8,12 ... (k=2)
+            m  = i + k - 1             # i = 0, 8,16,24 ... (k=4)
+            right = min(i+k+k-1, N-1)  # 오른쪽 끝은 리스트의 마지막원소인덱스가 N-1
+            merge(a, b, left, m, right)
+            i += k+k
+        k += k
+
+a = [54,88,77,26,93,17,49,10,17,77,11,31,22,44,17,20]
+print('정렬 전:\t', end='')
+print(a)
+iterative_sort(a)   
+print('정렬 후 :\t', end='')
+print(a)
+check = True
+for i in range(0, len(a)-1):
+    if a[i] > a[i+1]:
+        check = False
+print(check)

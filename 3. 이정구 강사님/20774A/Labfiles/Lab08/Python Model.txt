@@ -1,0 +1,46 @@
+# Create and test a model to predict income based on age, working class, education, and gender
+import pandas as pd
+import sklearn.ensemble as ensemble
+import sklearn.metrics as metrics
+import matplotlib
+matplotlib.use("agg")
+import matplotlib.pyplot as plt
+
+def azureml_main(censusTraining = None, censusTest = None):
+
+    # Train the model
+    classifier = ensemble.AdaBoostClassifier()
+    classifier.fit(censusTraining[["age", "fnlwgt", "education-num", "sex"]], censusTraining["income"])
+        
+    # Make predictions using the model and test data
+    predictions = classifier.predict(censusTest[["age", "fnlwgt", "education-num", "sex"]])
+    
+    # Examine the confusion matrix to assess the accuracy of the model
+    conf = metrics.confusion_matrix(censusTest["income"], predictions)
+    print(pd.crosstab(censusTest["income"], predictions, rownames=['True'], colnames=['Predicted'], margins=True))
+    
+    # Visualize the confusion matrix
+    plt.title('Confusion Matrix')
+    plt.imshow(conf, cmap='binary', interpolation='None')
+    plt.savefig("confusion.png")
+    plt.clf()
+    
+    # Calculate the ROC AUC score
+    censusTest['income'], income_index = pd.factorize(censusTest['income'])
+    predictedIncomes = pd.factorize(predictions)
+    rocData = metrics.roc_curve(censusTest["income"], predictedIncomes[0])
+    rocAuc = metrics.roc_auc_score(censusTest["income"], predictedIncomes[0])
+
+    # Plot the ROC curve
+    plt.plot(rocData[0], rocData[1], label='ROC curve (area = %0.3f)' % rocAuc)
+    plt.plot([0, 1], [0, 1], 'k--')  # random predictions curve
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.0])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Receiver Operating Characteristic')
+    plt.legend(loc="lower right")
+    plt.show()
+    plt.savefig("roc.png")
+
+    return censusTraining

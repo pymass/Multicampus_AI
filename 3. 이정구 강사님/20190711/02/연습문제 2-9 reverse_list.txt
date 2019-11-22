@@ -1,0 +1,13 @@
+class Node: 
+    def __init__(self, value=None, link=None):
+        self.value = value
+        self.next = link
+        
+def reverse_list(current_node):
+    previous = None
+    while current_node != None:
+        next_node = current_node.next
+        current_node.next = previous
+        previous = current_node
+        current_node = next_node
+    return previous

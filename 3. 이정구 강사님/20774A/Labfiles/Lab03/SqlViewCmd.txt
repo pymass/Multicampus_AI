@@ -1,0 +1,17 @@
+IF EXISTS (SELECT * FROM sys.views WHERE name = '[CustomerTransactions]')
+   DROP VIEW [20774A].[CustomerTransactions]
+GO
+
+CREATE VIEW [20774A].[CustomerTransactions]
+AS 
+
+SELECT customers.CustomerName, 
+       CAST( [TransactionAmount] AS REAL) AS TransactionAmount,
+      CAST([OutstandingBalance] AS REAL) AS OutstandingBalance,
+      CAST([TaxAmount] AS REAL) AS TaxAmount,
+      [TransactionDate]
+   
+   FROM [Sales].[Customers] AS customers
+                              LEFT OUTER JOIN
+                              [Sales].[CustomerTransactions] AS customertransactions
+                              ON customers.CustomerID = customertransactions.CustomerID;

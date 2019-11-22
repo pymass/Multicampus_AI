@@ -1,0 +1,61 @@
+* 데이터베이스 
+-> 체계화된 데이터 모임
+   통합된 정보 저장된 공간
+   여러사람이 공유하여 사용할 목적 
+* SELECT 
+  하나 또는 그 이상의 테이블에서 데이터를 
+  추출하는 데이터베이스의 조작 언어(SQL)
+* JOIN
+  여러 테이블의 레코드를 조합하여 하나의
+  열로 표현한 것
+  테이블에서 각각의 공통값을 이용함으로써 
+  필드가 조합되는 것
+* ORDER BY
+  SQL에서 정렬을 할때 쓰는 구문
+* GROUP BY
+  연산 함수가 각 그룹에 적용되도록 하기 위해
+  속성을 그룹열에 공유한 것 
+* CROSS JOIN
+  두 테이블에서 곱집합을 반환하는 것
+
+* 단순연결리스트 
+  리스트로 구현하는 가장 간단한 형태의 자료 구조
+
+* 리스트 
+  일련의 항목(item) 구성
+  실생활의 예) 학생명단, 시험성적...
+
+* 시간복잡도, 공간복잡도 
+  알고리즘의 성능시간을 나타내는 것은 시간복잡도
+  알고리즘의 수행되는 동안 사용되는 메모리 공간의 크리를 나타내는 것은 공간복잡도 
+
+* 자료구조 
+  일련의 동일한 타입의 데이터를 정돈아혀 저장한 구조체 
+* 스택 (Last-In, First-Out)
+* 순환 (Recursion)
+  함수/메소드의 실행 과정중 스스로를 호출하는 것
+* Microsoft Open R 
+* Microsoft Open R Remote 접속하기 위한 패키는 
+  msrdeploy 패키지
+* Microsoft R에서 XDF파일을 읽어드리거나 생성하는 경우 사용되는 함수는 rxImport
+* Microsoft R에서 Larget DataSet처리하기 위한 패키지는 ScaleR
+* Microsoft R에서 Factor요소로 바꿔는 메소드는 ?
+rxFactor
+* Microsoft R에서 LargetSet을 파일 형태로 저장하는 포멧은 XDF
+* a = [1,2,['a']]
+a[-1]
+* list vs tuple
+* a =[(1,2),(3,4)]
+for (first,last) in a:
+	print(first + list)
+
+* Matplotlib 시각화 패키지 
+* Matplotlib 여러개 그래프를 그리기 위해서 
+subplot
+* Matplotlib 산점도 scatter
+* Matplotlib 최소, 최대, 중간,...1
+  Boxplot
+* Matplotlib 선그래프를 그리기 위한 plot
+* Mapplotlib 히스토그램 그리기 위한 hist
+
+

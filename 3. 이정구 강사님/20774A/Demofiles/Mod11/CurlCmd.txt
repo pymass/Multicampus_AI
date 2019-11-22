@@ -1,0 +1,1 @@
+curl -v -X POST "https://<location>.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <your API key>" --data-ascii '{"documents":[{"language":"en","id":"1234","text":"I really love traveling to Spain. The architecture is beyond beautiful and the food exquisite."}]}' 

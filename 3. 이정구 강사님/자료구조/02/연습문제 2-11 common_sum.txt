@@ -1,0 +1,14 @@
+def common_sum(list1, list2):
+    total = 0
+    p1 = list1
+    p2 = list2
+    while p1 != None and p2 != None:
+        if p1.value == p2.value:
+            total += p1.value
+            p1 = p1.next
+            p2 = p2.next
+        elif p1.value < p2.value:
+            p1 = p1.next
+        else:
+            p2 = p2.next
+    return total

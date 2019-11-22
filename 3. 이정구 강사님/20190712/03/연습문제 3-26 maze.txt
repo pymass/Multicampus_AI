@@ -1,0 +1,68 @@
+a = [[0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+     [0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+     [0, 1, 0, 1, 0, 1, 0, 1, 1, 0],
+     [0, 1, 0, 1, 0, 1, 0, 1, 0, 0],
+     [0, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+     [0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
+     [0, 1, 0, 1, 1, 1, 0, 1, 0, 0],
+     [1, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+     [0, 0, 0, 0, 1, 1, 1, 1, 0, 0]]
+
+N = len(a)
+v = [[True for i in range(N)] for j in range(N)] # 방문 여부 체크 용
+s = []  # 스택
+i, j, d = 0, 0, 0     # 리스트 인덱스 i,j 그리고 탐색 방향, 0(동), 1(남), 2(서), 3(북)
+
+# 탐색은 동남서북 순으로
+while True:
+    v[i][j] = False   # 방문되면 False로
+    if d == 0:
+        if j+1 < N and v[i][j+1] and a[i][j+1] == 0: # 동쪽으로 탐색
+            s.append([i, j, 1])
+            j += 1
+            d = 0
+        else:
+            d = 1
+    elif d == 1:
+        if i+1 < N and v[i+1][j] and a[i+1][j] == 0: # 남쪽으로 탐색
+            s.append([i, j, 2])
+            i += 1
+            d = 0
+        else:
+            d = 2
+    elif d == 2:
+        if j-1 >= 0 and v[i][j-1] and a[i][j-1] == 0: # 서쪽으로 탐색
+            s.append([i, j, 3])
+            j -= 1
+            d = 0
+        else:
+            d = 3
+    elif d == 3:
+        if i-1 >= 0 and v[i-1][j] and a[i-1][j] == 0: # 북쪽으로  탐색
+            s.append([i, j, 4])
+            i -= 1
+            d = 0
+        else:
+            if len(s) > 0:
+                i, j, d = s.pop()
+            else:
+                print('경로 없음')
+                break
+    else:
+        if len(s) > 0:
+                i, j, d = s.pop()
+        else:
+            print('경로 없음')
+            break
+    
+    if i == N-1 and  j == N-1:
+        s.append([N-1, N-1, None])  # 출구 찾음
+        break
+    
+if len(s) > 0:
+    print('경로 출력:', end='') 
+    for i in range(len(s)): # 경로 출력
+        if i % 5 == 0:
+            print()
+        print('[', s[i][0], ', ', s[i][1], ']', end='')

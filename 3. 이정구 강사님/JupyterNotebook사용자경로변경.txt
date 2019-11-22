@@ -1,0 +1,4 @@
+jupyter notebook --generate-config
+C:\Users\사용자\.jupyter\jupyter_notebook_config.py
+#c.NotebookApp.notebook_dir = ''
+c.NotebookApp.notebook_dir = 'c:\사용자폴더'

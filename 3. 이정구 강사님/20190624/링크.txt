@@ -1,0 +1,13 @@
+* 설문
+https://forms.gle/Ua31NP7caf123jtR7
+
+* 과정 Demo & Lab
+20773a github
+
+\\teacher
+아이디 : test
+암호 : 1234
+
+microsoft ml.net
+
+azure machine learning studio

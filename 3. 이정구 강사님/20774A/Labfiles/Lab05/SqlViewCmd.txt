@@ -1,0 +1,25 @@
+IF EXISTS (SELECT * FROM sys.views WHERE name = '20774A.CustomerTransactions')
+   DROP VIEW [20774A].[CustomerTransactions]
+GO
+
+IF OBJECT_ID('[20774A].[CustomerTransactions]', 'V') IS NOT NULL
+    DROP VIEW [20774A].[CustomerTransactions]
+GO
+
+CREATE VIEW [20774A].[CustomerTransactions]
+
+AS 
+
+SELECT customers.CustomerName, 
+       CAST( [TransactionAmount] AS REAL) AS TransactionAmount,
+      CAST([OutstandingBalance] AS REAL) AS OutstandingBalance,
+      CAST([TaxAmount] AS REAL) AS TaxAmount,
+	  CONCAT(
+	  (LEFT([TransactionDate],4)),RIGHT(LEFT([TransactionDate],7),2),RIGHT(LEFT([TransactionDate],10),2)
+	  )															AS PKIDDate
+      ,[TransactionDate]
+   
+   FROM [Sales].[Customers] AS customers
+                              LEFT OUTER JOIN
+                              [Sales].[CustomerTransactions] AS customertransactions
+                              ON customers.CustomerID = customertransactions.CustomerID;

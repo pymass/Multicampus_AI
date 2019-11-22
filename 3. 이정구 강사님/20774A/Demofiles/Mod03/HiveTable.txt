@@ -1,0 +1,8 @@
+CREATE EXTERNAL TABLE if not exists DimDate(PKIDDate INT, Day INT, DaySuffix STRING, DayOfWeek INT, 
+   DayOfWeekName STRING, DOWInMonth INT, DayOfYear INT, WeekOfYear INT, WeekOfMonth INT, Month INT, 
+   MonthName STRING, Quarter INT, QuarterName STRING, Year INT, StandardDate STRING, Season STRING)
+   ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY ','
+   STORED AS TEXTFILE
+   LOCATION '/data'
+   TBLPROPERTIES("skip.header.line.count"="1");

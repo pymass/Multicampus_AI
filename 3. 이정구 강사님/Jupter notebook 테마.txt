@@ -1,0 +1,4 @@
+pip install jupyterthemes
+jt -l 
+jt -t chesterish -fs 21
+jt -t monokai -fs 20

@@ -1,0 +1,43 @@
+R = 10
+def sort(a, t, low, high, k):
+    
+        if high <= low or k == 1: 
+            return
+        sindex = [0 for x in range(R+1)]
+        original_index = [0 for x in range(R+1)] # line 30의 재귀호출 때 원래의 시작인덱스가 필요하므로
+
+        # (a[i]%k)//(k//10)은 a[i]의 각 자릿수를 추출
+        for i in range(low, high+1):
+            sindex[(a[i]%k)//(k//10)+1] += 1 
+
+        # 각 버킷 인덱스 값이 저장될 배열 t의 시작 인덱스 계산
+        for i in range(R):
+            sindex[i+1] += sindex[i]
+ 
+        # line 30의 재귀호출을 위해 최초 계산된 시작 인덱스를 original_index 배열에 저장
+        for i in range(R+1): 
+            original_index[i] = sindex[i]
+
+        # 해당 버킷의 인덱스 값에 대응되는 a[i]를 배열 t에 차례로 저장
+        for i in range(low, high+1): 
+            t[sindex[(a[i]%k)//(k//10)]] = a[i] 
+            sindex[(a[i]%k)//(k//10)] += 1
+
+        for i in range(low, high+1): 
+            a[i] = t[i-low] # 배열 a로 복사
+
+        for i in range(R):   # 각 더미별로 재귀호출
+            sort(a, t, low+original_index[i], low+original_index[i+1]-1, k//10) 
+
+a = [151,439,491,520,437,22,430,10,124,7,108,105]
+N = len(a)
+t = [0 for x in range(N)]
+print('정렬 전:  ')
+for i in range(N): 
+    print('%03d' % a[i], ' ', end='')
+
+sort(a, t, 0, N-1, 1000)
+
+print('\n정렬 후:  ')
+for i in range(N): 
+    print('%03d' % a[i], ' ', end='')

@@ -1,0 +1,24 @@
+def find_it(a):
+    count = 0   # [9, 2, 8, 2 ,2 ,2, 5, 2]
+    candidate = 0    
+    for i in range(len(a)): 
+        if count == 0: 
+            candidate = a[i] 
+            count = 1   # count를  1로 리셋          
+        elif candidate == a[i]: 
+            count += 1
+        else: 
+            count -= 1
+        
+    if count == 0: 
+        print('과반수 넘는 숫자 없음')
+    else: 
+        count = 0 # 
+        for i in range(len(a)): 
+            if candidate == a[i]:
+                count += 1
+        if count > len(a) // 2: print('과반수 넘는 숫자 = ', candidate)
+        else: print('과반수 넘는 숫자 없음')
+ 
+a = [9, 2, 8, 2, 2, 2, 5, 2]
+find_it(a)

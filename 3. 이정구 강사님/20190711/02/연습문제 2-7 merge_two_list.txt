@@ -1,0 +1,21 @@
+class Node: 
+    def __init__(self, value=None, link=None):
+        self.value = value
+        self.next = link
+        
+def merge_two_lists(p1, p2):
+    head = Node(0, None)
+    p = head
+    while p1 != None and p2 != None:
+        if p1.value < p2.value:
+            p.next = p1
+            p1 = p1.next
+        else:
+            p.next = p2
+            p2 = p2.next
+        p = p.next
+    if p1 != None:
+        p.next = p1
+    if p2 != None:
+        p.next = p2
+    return head.next

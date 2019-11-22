@@ -1,0 +1,21 @@
+a = ['(', '(', '{', '}', '(', ')', ')', '{', '{', '}', '(', ')', '}', ')']
+print('ют╥б:', a)
+s = []
+N = len(a)
+result = True
+for i in range(N):
+    if a[i] == '(' or  a[i] == '{':
+        s.append(a[i])
+    else:
+        popped_paren = s.pop()
+        if a[i] == ')' and popped_paren != '(':
+            result = False
+            break
+        elif a[i] == '}' and popped_paren != '{':
+            result = False
+            break
+
+if len(s) == 0 and result == True:
+    print('True')
+else:
+    print('False'

@@ -1,0 +1,21 @@
+class Node: 
+    def __init__(self, value=None, link=None):
+        self.value = value
+        self.next = link
+        
+def split_list(p, k):
+    head1 = Node(0, None)
+    head2 = Node(0, None)
+    p1 = head1
+    p2 = head2
+    while p != None:
+        if p.value < k:
+            p1.next = p
+            p1 = p1.next
+        else:
+            p2.next = p
+            p2 = p2.next
+        p = p.next
+    p1.next = None
+    p2.next = None
+    return head1, head2

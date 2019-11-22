@@ -1,0 +1,1 @@
+curl -v -X GET "https://westus.api.cognitive.microsoft.com/recommendations/v4.0/models/<ModelID>/recommend/item?itemIds=5C5-00025&numberOfResults=3&minimalScore=.01" -H "Ocp-Apim-Subscription-Key: <your API key>" 

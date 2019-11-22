@@ -1,0 +1,64 @@
+# Download the movie ratings and IMDB movie titles from the sample datasets collection
+from azureml import Workspace
+
+ws = Workspace()
+dsRatings = ws.datasets['Movie Ratings']
+ratings = dsRatings.to_dataframe()
+
+dsMovies = ws.datasets['Movie Names']
+movies = dsMovies.to_dataframe()
+
+
+# Examine the first few rows in each dataset
+print(ratings.head())
+print()
+print(movies.head())
+
+
+# Rename the columns in the movies dataset and reindex it using the MovieId
+# Makes it easier to join the datasets later
+movies.rename(columns = {'Movie ID': 'MovieId', 'Movie Name': 'MovieName'}, inplace = True)
+movies = movies.set_index('MovieId')
+movies.head()
+
+
+# Import the numpy and pandas modules
+import numpy as np
+import pandas as pd
+
+
+# What is the average rating for each movie?
+meanRatings = ratings.groupby(['MovieId']).mean()
+meanRatings.head()
+
+
+# Join the results with the movie data (containing the movie names), and sort by rating
+movieData = pd.concat([meanRatings, movies], axis = 1).sort_values(['Rating'], ascending = False)
+del movieData['UserId']
+del movieData['Timestamp']
+movieData
+
+
+# How frequently do viewers post ratings?
+
+# Step 1: Reorganize the ratings data to index by the timestamp
+ratings.index = ratings.Timestamp
+ratings.index = ratings.index.astype('datetime64[s]')
+ratings.index
+del ratings['Timestamp']
+ratings.head()
+
+# Step 2: Count the number of ratings for each day ('D')
+dailyRatings = ratings.resample('D').count()
+del dailyRatings['UserId']
+del dailyRatings['MovieId']
+dailyRatings.rename(columns = {'Rating': 'NumRatings'}, inplace = True)
+dailyRatings.head()
+
+#Step 3: Graph the results
+import matplotlib.pyplot as plt
+get_ipython().magic('matplotlib inline')
+
+plt.rcParams["figure.figsize"] = [12, 9] 
+plt.plot(dailyRatings)
+

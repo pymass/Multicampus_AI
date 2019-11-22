@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+ 
+<script> 
+$( function() {
+	  $("#pre").click(function(){
+		   $( "#p1" ).prepend(  "<strong>가나다라</strong>"  ); 
+	  });
+	  $("#append").click(function(){
+		   $( "#p1" ).append(  "<strong>카타파하</strong>"  ); 
+	  });
+	  $("#before").click(function(){
+		  $( "#p2" ).before(  "<h1>타이틀입니다.</h1>"  ); 
+	  });
+	  $("#after").click(function(){
+		  $( "#p2" ).after(  "<h1>내용입니다.</h1>"  ); 
+	  });
+});
+</script></head>
+<body>
+<p id="p1">마바사아자차</p>
+<button id="pre">태그 안의 내용의 앞에 추가</button> 
+<button id="append">태그 안의 내용의 뒤에 추가</button> 
+<p id="p2">내용입니다.</p>
+<button id="before">태그 앞에 추가</button> 
+<button id="after">태그 뒤에 추가</button>
+</body></html>

@@ -1,0 +1,50 @@
+USE [WideWorldImportersDW];
+GO
+
+CREATE PROC get_pick_length 
+AS  
+BEGIN  
+ EXEC   sp_execute_external_script  
+       @language = N'R'  
+     , @script = N'res <-quantile(InputDataSet$TimeToPick);
+                  df <- data.frame(res);'  
+     , @input_data_1 = N'SELECT datediff(DAY, [Order Date Key], [Picked Date Key]) as TimeToPick FROM [Fact].[Order]
+	  WHERE DATEDIFF(DAY, [Order Date Key], [Picked Date Key]) > 0;'  
+	 , @output_data_1_name = N'df'
+     WITH RESULT SETS (("TimeToPick" float not null));  
+END;  
+GO
+
+
+
+
+
+
+CREATE PROCEDURE [dbo].[TimetoPickHistogram]  
+AS  
+BEGIN  
+  SET NOCOUNT ON;  
+  DECLARE @query nvarchar(max) =  
+  N'SELECT datediff(DAY, [Order Date Key], [Picked Date Key]) as TimeToPick FROM [Fact].[Order]
+   WHERE DATEDIFF(DAY, [Order Date Key], [Picked Date Key]) > 0;'  
+  EXECUTE sp_execute_external_script @language = N'R',  
+                                     @script = N'  
+   image_file = tempfile();  
+   jpeg(filename = image_file);  
+   #Plot histogram  
+   rxHistogram(~TimeToPick, data=InputDataSet, col=''lightblue'',   
+   title = ''Time to Pick Histogram'', xlab =''Time to Pick'', ylab =''Counts'');  
+   dev.off();  
+   OutputDataSet <- data.frame(data=readBin(file(image_file, "rb"), what=raw(), n=1e6));  
+   ',  
+   @input_data_1 = @query  
+   WITH RESULT SETS ((plot varbinary(max)));  
+END  
+GO
+
+
+
+EXEC [dbo].[TimetoPickHistogram]
+
+
+bcp "exec TimetoPickHistogram" queryout "plot.jpg" -S <server> -d  WideWorldImportersDW  -T

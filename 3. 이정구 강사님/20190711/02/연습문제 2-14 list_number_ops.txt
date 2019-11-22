@@ -1,0 +1,93 @@
+class Node:       
+    def __init__(self, item, link): # 노드 생성자
+        self.item = item
+        self.next = link
+        
+def print_list(head): # 연결리스트 출력
+    p = head
+    while p:
+        if p.next != None:
+            print(p.item, ' -> ', end='')
+        else:
+            print(p.item)
+        p = p.next
+     
+def make_list(a): # 정수를 오른쪽으로부터 왼쪽으로 2자리씩 끊어서 노드에 저장된 단순연결리스트 만들기
+    aa = str(a)
+    head = None
+    for i in range(len(aa)-1, 0, -2):
+        head = Node(int(aa[i-1:i+1]), head)
+    if len(aa) % 2 == 1:
+        head = Node(int(aa[0]), head) 
+    return head
+
+def reverse_list(current_node): # 연결리스트를 역순으로 만들기
+    previous = None
+    while current_node != None:
+        next_node = current_node.next
+        current_node.next = previous
+        previous = current_node
+        current_node = next_node
+    return previous 
+
+def add_lists(a, b): # 덧셈 연산
+    c = None
+    carry = 0
+    while a != None and b != None:
+        result = a.item + b.item + carry
+        carry = 0
+        if result > 100:    # 100이 넘으면 1 올림
+            result = result % 100
+            carry = 1
+        c = Node(result, c)
+        a = a.next
+        b = b.next
+        
+    carry_flag = True  # a에 남은 노드들 처리
+    while a != None:
+        if carry_flag:
+            a.item += carry
+            carry_flag =False
+        c = Node(a.item, c)
+        a = a.next
+
+    carry_flag = True  # b에 남은 노드들 처리
+    while b != None:
+        if carry_flag:
+            b.item += carry
+            carry_flag =False
+        c = Node(b.item, c)
+        b = b.next
+    return c
+
+def make_string(a): # 연결리스트를 숫자(스트링)로 변환
+    p = a
+    num = ''
+    while p != None:
+        if p.item < 10:
+            two_digits = '0' + str(p.item)
+        else:
+            two_digits = str(p.item)
+        num += two_digits
+        p = p.next
+
+    for i in range(len(num)): # leading zero 제거
+        if num[i] != '0':  
+            break
+    num = num[i:]
+    return num
+
+a = 100038206504090     # 1 00 03 82 06 50 40 90
+b = 99309332            #            99 30 93 32
+print('a = ', a)
+print('b = ', b)
+
+list1 = make_list(a)
+list_a = reverse_list(list1)
+
+list2 = make_list(b)
+list_b = reverse_list(list2)
+
+list_c = add_lists(list_a, list_b)
+
+print('a + b = ', make_string(list_c))

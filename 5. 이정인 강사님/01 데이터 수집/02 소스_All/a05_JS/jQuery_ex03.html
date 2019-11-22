@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script>
+$(  function() {
+	$('.item > strong').css('color', 'Orange');
+      //item 클래스  엘리멘트 자식 중 <strong> 
+	$('.blue > #s2').css('color', 'Red');      
+      //blue 클래스 엘리멘트 자식 중 id가 S2 
+});
+</script>
+</head><body>
+<ul> <li class='blue'> aaaaa 
+		<strong> aa </strong>
+	</li>
+	<li class='item'> bbbbb 
+		<strong> bb </strong>
+	</li>
+	<li class='blue'> cccc 
+		<strong id="s1"> ddd </strong> 
+		<strong id="s2"> fff </strong>
+	</li>
+</ul>
+</body></html>
+
+

@@ -1,0 +1,8 @@
+def find_middle(head):
+    slow = fast = head
+    while fast != None:
+        fast = fast.next 
+        if fast != None and fast.next != None:
+            slow = slow.next
+            fast = fast.next
+    return slow

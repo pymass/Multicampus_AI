@@ -1,0 +1,12 @@
+﻿다음은  2013년 국정원 의심계정의 twitter를 크롤링 파일입니다.
+twitter.txt 파일을
+1) 형태소 분석하여 twitter.m 파일로 저장(  오타정정, 기본형  )
+2) twitter.m 파일을 읽어서 워드 클라우드 작성 (최대 2000단어만)
+
+t1 = open("twitter.txt","r",encoding="utf-8") 
+data = t1.read()  
+
+
+t = open("twitter.m","w",encoding="utf-8") 
+t.write("테스트")   
+

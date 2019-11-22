@@ -1,0 +1,41 @@
+빅데이터활용 
+1 scikit-learn 15
+2 azure machine 15
+
+* scikit-learn python용 머신러닝 라이브러리.
+* 머신러닝 - 인공 지능의 한분야로 컴퓨터가 학습 
+  할 수 있도록 하는 알고리즘과 기술을 개발하는 분야 
+* 머신러닝 크게 구분 2가지
+  지도학습/비지도학습 
+* numpy package
+* 지도학습 
+  - regression/classfication
+* 비지도학습 
+  - clustering
+* 지도학습 
+* 분류는 미리 정의된 가능성이 있는 여러 개의 class label중 하나를 선택하는 것이다. 
+* 일반화 -> 
+  지도 학습에서는 훈련 데이터로 학습한 모델이 훈련 데이터와 특성이 같다면 처음 보는 새로운 데이터가주어져도 정확한 예측을 할것이라고 기대합니다.
+  모델이 처음 보는 데이터에 대해 정확하게 예측할 수 있으며 이를 훈련 세트에서 테스트 세트로 일반화 되었다고 한다.
+* feature, -> feature engineering.
+* decision tree
+* SVM
+* k-means
+* pandas
+
+* yes/no, 0/1
+* 알고리즘 
+  - set of steps
+  - methods
+  - actions
+
+1.
+p38
+ 47,48,49
+2.
+module1, demo1
+
+
+
+
+

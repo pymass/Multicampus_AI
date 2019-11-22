@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<style>
+ *{  padding: 10px;
+  }
+  .menu:hover { 
+    cursor: pointer;
+  }
+ #more_menu{
+   width: 560px;
+   height: 200px;
+   background-color: pink;
+   display: none;
+ }
+</style>
+<script>
+$(function() {
+  $("#more").click(function() {
+    $("#more_menu").slideDown("slow")
+  });
+});
+</script></head>
+</head>
+<body>
+<table> 
+ <tr class="menu">
+                  <td >카페</td><td>메일</td><td>뉴스</td><td>지도</td><td>증권</td>
+                  <td>쇼핑</td><td>카카오TV</td><td>웹툰</td><td>블로그</td><td id="more">더보기</td> 
+ </tr>
+ <tr> <td colspan="10">
+      <div id="more_menu">
+             커뮤니케이션  미디어
+      </div>
+      </td>
+ </tr>
+</table>
+</body>
+</html>

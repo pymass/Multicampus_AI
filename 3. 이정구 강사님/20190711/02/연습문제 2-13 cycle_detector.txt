@@ -1,0 +1,8 @@
+def find_cycle(head):
+    slow = fast = head
+    while fast != None and fast.next != None:
+        fast = fast.next.next 
+        slow = slow.next
+        if slow == fast:
+            return True   # 싸이클 발견
+    return False  # 싸이클 없음

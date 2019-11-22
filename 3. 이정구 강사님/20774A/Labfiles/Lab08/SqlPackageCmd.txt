@@ -1,0 +1,1 @@
+SqlPackage.exe /a:import /tcs:"Data Source=<your db servername>.database.windows.net;Initial Catalog=WideWorldImporters-Standard;User Id=dbadmin;Password=Pa55w.rd" /sf:E:\Labfiles\Lab08\WideWorldImporters-Standard.bacpac /p:DatabaseEdition=Standard /p:DatabaseServiceObjective=S0

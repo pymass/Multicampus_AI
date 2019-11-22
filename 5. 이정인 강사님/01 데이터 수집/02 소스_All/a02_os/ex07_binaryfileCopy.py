@@ -1,0 +1,5 @@
+f1 = open("googlelogo.png","rb")
+f2 = open("googlelogo2.png","wb")
+f2.write(  f1.read()   )
+f1.close()
+f2.close()

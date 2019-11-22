@@ -1,0 +1,35 @@
+1. Employees데이터베이스에서 각각에 부서에 포함된 사원의 사번, 이름, 부서코드, 부서명을 출력하시오.
+사원이 없는 부서도 출력하시오.(사원의 사번, 이름, 부서코드, 부서명)
+70.12.114.90
+id : test
+pwd : 1234
+select  employees.emp_no, 
+dept_emp.dept_no,
+departments.dept_name
+from employees, dept_emp, departments
+where employees.emp_no = dept_emp.emp_no 
+and dept_emp.dept_no = departments.dept_no
+
+
+2. 다음의 입력을 하는 경우, 출력결과가 나올 수 있도록 Binary Tree를 구현하시오.
+root = Node(13)
+root.insert(6)
+root.insert(15)
+root.insert(3)
+
+3 6 13 15
+
+3. mtcars에서 제공하는 wt, mpg컬럼을 사용하여 Scatterplot를 출력하시오.
+
+4.다음 데이터를 사용하여 기술 통계 항목을 구하시오.
+import pandas as pd
+import numpy as np
+
+d = {'Name':pd.Series(['Tom','James','Ricky','Vin','Steve','Smith','Jack',
+   'Lee','David','Gasper','Betina','Andres']),
+   'Age':pd.Series([25,26,25,23,30,29,23,34,40,30,51,46]),
+   'Rating':pd.Series([4.23,3.24,3.98,2.56,3.20,4.6,3.8,3.78,2.98,4.80,4.10,3.65])
+}
+
+5. 다음 데이터를 사용하여 Scatterplot를 출력하시오.
+np.random.rand(50, 4)

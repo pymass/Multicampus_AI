@@ -1,0 +1,7 @@
+nano SparkCount.py 
+
+spark-submit SparkCount.py 
+
+hdfs dfs -ls /example/spark_output 
+
+hdfs dfs -text /example/spark_output/part-00000 

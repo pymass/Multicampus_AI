@@ -1,0 +1,15 @@
+pyspark
+
+alltxt = sc.textFile("/example/data/gutenberg/davinci.txt")
+
+alltxt.count()
+
+alltxt.first()
+
+filtertxt = alltxt.filter(lambda alltxt: "Italy" in alltxt)
+
+filtertxt.count()
+
+filtertxt.collect()
+
+quit() 

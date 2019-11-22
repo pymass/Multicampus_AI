@@ -1,0 +1,3 @@
+프로그램/스크립트 => C:\Users\user\Anaconda3\pythonw.exe
+
+인수 추가(옵션) => C:\Users\user\Anaconda3\Scripts\jupyter-notebook-script.py --no-browser

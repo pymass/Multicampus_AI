@@ -1,0 +1,24 @@
+pyspark
+
+txtRdd = sc.textFile('/example/data/gutenberg/ulysses.txt')
+
+txtRdd.count()
+
+txtRdd = txtRdd.filter(lambda x: 'good' in x)
+
+txtRdd.count()
+
+quit()
+
+
+ls /usr/hdp/current/hadoop-mapreduce-client 
+
+hadoop jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar 
+
+hadoop jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount
+
+hadoop jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/ulysses.txt /example/results 
+
+hdfs dfs -ls /example/results 
+
+hdfs dfs -text /example/results/part-r-00000 

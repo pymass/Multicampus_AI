@@ -1,0 +1,15 @@
+1-12
+
+512
+2048
+2048
+2048
+
+DEV 172.16.0.4
+RSVR 172.16.0.3
+
+ipconfig
+ping 172.16.0.4
+ping 172.16.0.3
+iv
+http://download1.rstudio.org/RStudio-1.0.136.exe

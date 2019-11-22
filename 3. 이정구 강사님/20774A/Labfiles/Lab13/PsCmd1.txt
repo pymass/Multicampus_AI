@@ -1,0 +1,1 @@
+bcp "exec TimetoPickHistogram" queryout "plot.jpg" -S <server> -d  WideWorldImportersDW  -T

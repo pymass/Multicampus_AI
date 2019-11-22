@@ -1,0 +1,10 @@
+# import and initialize Spark context
+from pyspark import SparkConf, SparkContext
+cnf = SparkConf().setMaster("local").setAppName("SparkCount")
+sc = SparkContext(conf = cnf)
+# use Spark to count words
+alltxt = sc.textFile("/example/data/gutenberg/outlineofscience.txt")
+words = alltxt.flatMap(lambda alltxt: alltxt.split(" "))
+counts = words.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a +b)
+# store results
+counts.saveAsTextFile("/example/spark_output")

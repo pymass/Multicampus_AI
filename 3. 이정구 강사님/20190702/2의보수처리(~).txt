@@ -1,0 +1,23 @@
+https://docs.python.org/3/reference/expressions.html#unary-arithmetic-and-bitwise-operations
+
+The unary ~ (invert) operator yields the bitwise inversion of its integer argument. The bitwise inversion of x is defined as -(x+1). It only applies to integral numbers.
+
+a = 1
+a1 = ~a
+a2 = 2
+a3 = ~a2
+print(bin(a))
+print(bin(a1))
+print(bin(a2))
+print(bin(a3))
+
+
+import numpy as np
+a3 = np.array([1,2,3,4])
+print(~np.amin(a3))
+
+0b1
+-0b10
+0b10
+-0b11
+-2

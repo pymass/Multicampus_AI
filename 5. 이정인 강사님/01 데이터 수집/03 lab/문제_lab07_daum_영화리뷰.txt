@@ -1,0 +1,16 @@
+다음 url은  영화의 리뷰 정보가 있습니다. (인코딩은 utf-8) 
+
+"https://movie.daum.net/moviedb/grade?movieId=110902&type=netizen" 
+
+1) 웹페이지를 크롤링하고,
+
+ 웹페이지를 분석하여  
+2) 리뷰정보만 출력하세요. 
+
+3) 리뷰정보를 텍스트 파일에 저장하세요. 
+
+
+
+참고) 
+data =  d.read()
+data =  data.decode("utf-8")  ## 

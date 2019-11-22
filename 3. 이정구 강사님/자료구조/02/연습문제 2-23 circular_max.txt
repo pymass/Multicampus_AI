@@ -1,0 +1,30 @@
+def find_linear_max(a):
+    max_sum = sum_upto_current_element = 0     
+    for i in range(len(a)):        
+        sum_upto_current_element += a[i]       # add the current element       
+        if sum_upto_current_element < 0:       # start again from i+1
+            sum_upto_current_element = 0          
+        if max_sum < sum_upto_current_element: # if sum_upto_current_element is smaller than max_sum, proceed to i+1
+            max_sum = sum_upto_current_element # update max_sum if sum_upto_current_element is larger than max_sum    
+    return max_sum
+
+def circular_max_sum(a):  
+    linear_case = find_linear_max(a)
+    print('선형리스트의 연속된 원소의 최댓값은', linear_case, '.')
+    arraysum  =  0
+    for i in range(len(a)):    
+        arraysum += a[i]        # calculate array-sum
+        a[i] = -a[i]            # invert the array (change signs) -11, -10, 20, -5, 3, 5, -8, 13, -10
+        
+    circular_case = arraysum + find_linear_max(a)  
+        # find_linear_max()는 부호를 바꾸어 얻은 max_sum이므로 
+        # arraysum + find_linear_max()는 실제로 원래 배열 원소에서 뺀 것이고
+        # 이 결과는 wrapping 부분에 contiguous sum이 있을 경우를 대비 linear_case와 비교하기 위해
+    if circular_case > linear_case:
+        return circular_case
+    else: 
+        return linear_case
+ 
+a = [11, 10, -20, 5, -3, -5, 8, -13, 10]  
+# a = [10, 10, 10, 10, 10, 10, 10, 10, 10]
+print('원형리스트의 연속된 원소의 최댓값은', circular_max_sum(a),'.')

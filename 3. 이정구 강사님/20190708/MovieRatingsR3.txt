@@ -1,0 +1,4 @@
+
+install.packages("callr") # 코드에 추가
+install.packages("ggplot2", dependencies = TRUE)
+library(ggplot2)

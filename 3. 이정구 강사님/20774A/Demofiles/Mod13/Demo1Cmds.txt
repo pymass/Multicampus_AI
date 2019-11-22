@@ -1,0 +1,44 @@
+remoteLogin("<IP address>:12800", username = "admin", password = "Pa55w.rd", diff = TRUE, session = TRUE, commandline = TRUE)
+
+
+iris$Petal.Width
+
+data(iris)
+head(iris)
+summary(iris)
+
+install.packages("scatterplot3d")
+library(scatterplot3d)
+scatterplot3d(iris[,1:3], color=as.integer(iris$Species))
+
+hist(iris$Petal.Width, breaks=20, col="green")
+plot(x=iris$Petal.Length, y=iris$Petal.Width, col=iris$Species)
+
+
+CREATE PROCEDURE [dbo].[TimetoPickHistogram]  
+AS  
+BEGIN  
+  SET NOCOUNT ON;  
+  DECLARE @query nvarchar(max) =  
+  N'SELECT datediff(DAY, [Order Date Key], [Picked Date Key]) as TimeToPick FROM [Fact].[Order]
+   WHERE DATEDIFF(DAY, [Order Date Key], [Picked Date Key]) > 0;'  
+  EXECUTE sp_execute_external_script @language = N'R',  
+                                     @script = N'  
+   image_file = tempfile();  
+   jpeg(filename = image_file);  
+   #Plot histogram  
+   rxHistogram(~TimeToPick, data=InputDataSet, col=''lightblue'',   
+   title = ''Time to Pick Histogram'', xlab =''Time to Pick'', ylab =''Counts'');  
+   dev.off();  
+   OutputDataSet <- data.frame(data=readBin(file(image_file, "rb"), what=raw(), n=1e6));  
+   ',  
+   @input_data_1 = @query  
+   WITH RESULT SETS ((plot varbinary(max)));  
+END  
+GO
+
+Exec get_pick_length
+
+EXEC [dbo].[TimetoPickHistogram]
+
+bcp "exec TimetoPickHistogram" queryout "plot.jpg" -S <server> -d  WideWorldImportersDW  -T
